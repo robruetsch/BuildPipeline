@@ -27,4 +27,4 @@ stages:
       inputs:
         command: 'test'
         projects: '**/*Tests/*.csproj'
-        arguments: '--configuration $(buildConfiguration) --filter DisplayName~UnitTests'
+        arguments: '--configuration $(buildConfiguration) --filter DisplayName~UnitTests&Category=Integration'
