@@ -58,7 +58,7 @@ namespace ShoppingCartServiceTests.BusinessLogic
             };
         }
 
-        [Theory]
+        [Theory, Trait("Category", "Unit")]
         [MemberData(nameof(DifferentAddressTypes))]
         public void CalculateShippingCost_NoItems_Return0(Address source, Address destination)
         {
@@ -74,7 +74,7 @@ namespace ShoppingCartServiceTests.BusinessLogic
             Assert.Equal(0, result);
         }
 
-        [Theory]
+        [Theory, Trait("Category", "Unit")]
         [MemberData(nameof(AddressTypesWithRates))]
         public void CalculateShippingCost_StandardShippingOneItemsQuantity1_Return1TimesRate(
             Address source, Address destination, double rate)
@@ -97,7 +97,7 @@ namespace ShoppingCartServiceTests.BusinessLogic
             Assert.Equal(1 * rate, result);
         }
 
-        [Theory]
+        [Theory, Trait("Category", "Unit")]
         [MemberData(nameof(AddressTypesWithRates))]
         public void CalculateShippingCost_StandardShippingOneItemsQuantity5_return5TimesRate(
             Address source, Address destination, double rate)
@@ -120,7 +120,7 @@ namespace ShoppingCartServiceTests.BusinessLogic
             Assert.Equal(5 * rate, result);
         }
 
-        [Theory]
+        [Theory, Trait("Category", "Unit")]
         [MemberData(nameof(AddressTypesWithRates))]
         public void CalculateShippingCost_StandardShippingTwoItems_ReturnSumOfItemsQuantityTimesRate(
             Address source, Address destination, double rate)
@@ -144,7 +144,7 @@ namespace ShoppingCartServiceTests.BusinessLogic
             Assert.Equal(8 * rate, result);
         }
 
-        [Theory]
+        [Theory, Trait("Category", "Unit")]
         [MemberData(nameof(ShippingMethodsWithRates))]
         public void CalculateShippingCost_SameCityShippingOneItemsQuantity1_Return1TimesShippingRate(
             ShippingMethod shippingMethod, double shippigRate)
@@ -164,7 +164,7 @@ namespace ShoppingCartServiceTests.BusinessLogic
             Assert.Equal(1 * ShippingCalculator.SameCityRate * shippigRate, result);
         }
 
-        [Theory]
+        [Theory, Trait("Category", "Unit")]
         [InlineData(ShippingMethod.Standard)]
         [InlineData(ShippingMethod.Expedited)]
         [InlineData(ShippingMethod.Priority)]
@@ -190,7 +190,7 @@ namespace ShoppingCartServiceTests.BusinessLogic
             Assert.Equal(1 * ShippingCalculator.InternationalShippingRate, result);
         }
 
-        [Fact]
+        [Fact, Trait("Category", "Unit")]
         public void CalculateShippingCost_PremiumCustomerWithExpressShippingMethod_PayShippingRate()
         {
             var address = CreateAddress("country 1");

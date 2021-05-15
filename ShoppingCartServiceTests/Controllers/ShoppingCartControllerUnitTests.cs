@@ -31,7 +31,7 @@ namespace ShoppingCartServiceTests.Controllers
             _mocker.Use(Mapper);          
         }
 
-        [Fact]
+        [Fact, Trait("Category", "Unit")]
         public void GetAll_HasOneCart_returnAllShoppingCartsInformation()
         {
             var cart = new CartBuilder()
@@ -69,7 +69,7 @@ namespace ShoppingCartServiceTests.Controllers
             Assert.Equal(expected, actual.Single());
         }
 
-        [Fact]
+        [Fact, Trait("Category", "Unit")]
         public void FindById_HasOneCartWithSameId_returnAllShoppingCartsInformation()
         {
             const string cartId = "cart-1";
@@ -110,7 +110,7 @@ namespace ShoppingCartServiceTests.Controllers
         }
 
 
-        [Fact]
+        [Fact, Trait("Category", "Unit")]
         public void FindById_ItemNotFound_returnNotFoundResult()
         {
             var fakeShoppingCartRepository = _mocker.GetMock<IShoppingCartRepository>();
@@ -124,7 +124,7 @@ namespace ShoppingCartServiceTests.Controllers
             Assert.IsType<NotFoundResult>(actual.Result);
         }
 
-        [Fact]
+        [Fact, Trait("Category", "Unit")]
         public void CalculateTotals_ShoppingCartNotFound_ReturnNotFound()
         {
             var fakeShoppingCartRepository = _mocker.GetMock<IShoppingCartRepository>();
@@ -137,7 +137,7 @@ namespace ShoppingCartServiceTests.Controllers
             Assert.IsType<NotFoundResult>(actual.Result);
         }
 
-        [Fact]
+        [Fact, Trait("Category", "Unit")]
         public void CalculateTotals_ShippingCartFound_ReturnTotals()
         {
             var cart = new CartBuilder()
@@ -160,7 +160,7 @@ namespace ShoppingCartServiceTests.Controllers
             Assert.Equal(10.0, actual.Value.Total);
         }
 
-        [Fact]
+        [Fact, Trait("Category", "Unit")]
         public void Create_ValidData_SaveShoppingCartToDB()
         {
             var fakeShoppingCartRepository = _mocker.GetMock<IShoppingCartRepository>();
@@ -195,7 +195,7 @@ namespace ShoppingCartServiceTests.Controllers
             Assert.Equal("cart-1", cartId);
         }
 
-        [Fact]
+        [Fact, Trait("Category", "Unit")]
         public void Create_DuplicateItem_ReturnBadRequestResult()
         {
             var target = _mocker.CreateInstance<ShoppingCartController>();
@@ -225,7 +225,7 @@ namespace ShoppingCartServiceTests.Controllers
             };
         }
 
-        [Theory]
+        [Theory, Trait("Category", "Unit")]
         [MemberData(nameof(InvalidAddresses))]
         public void Create_InValidAddress_ReturnBadRequestResult(Address address)
         {
@@ -243,7 +243,7 @@ namespace ShoppingCartServiceTests.Controllers
             Assert.IsType<BadRequestResult>(result.Result);
         }
 
-        [Fact]
+        [Fact, Trait("Category", "Unit")]
         public void Delete_ValidData_RemoveShoppingCartToDB()
         {
             var fakeShoppingCartRepository = _mocker.GetMock<IShoppingCartRepository>();
@@ -255,7 +255,7 @@ namespace ShoppingCartServiceTests.Controllers
             fakeShoppingCartRepository.Verify(x => x.Remove("cart-1"));
         }
 
-        [Fact]
+        [Fact, Trait("Category", "Unit")]
         public void CalculateTotals_InvalidCouponExceptionThrown_ReturnBadRequest()
         {
             var coupon = CreateCoupon("coupon-1", CouponType.Amount, 100);
@@ -288,7 +288,7 @@ namespace ShoppingCartServiceTests.Controllers
             Assert.IsType<BadRequestResult>(result.Result);
         }
 
-        [Fact]
+        [Fact, Trait("Category", "Unit")]
         public void AddItemToCart_shoppingCartNotFound_ReturnNotFound()
         {
             var fakeShoppingCartRepository = _mocker.GetMock<IShoppingCartRepository>();
@@ -301,7 +301,7 @@ namespace ShoppingCartServiceTests.Controllers
             Assert.IsType<NotFoundResult>(result.Result);
         }
 
-        [Fact]
+        [Fact, Trait("Category", "Unit")]
         public void AddItemToCart_shoppingCartItemWithSameIdNotInCart_CreateNewItem()
         {
             var cart = new CartBuilder()
@@ -334,7 +334,7 @@ namespace ShoppingCartServiceTests.Controllers
             */
         }
 
-        [Fact]
+        [Fact, Trait("Category", "Unit")]
         public void AddItemToCart_shoppingCartItemWIthSameIdInCartSameDetails_IncreaseItemCount()
         {
             const string productId = "item-1";
@@ -360,7 +360,7 @@ namespace ShoppingCartServiceTests.Controllers
                 x.Update("cart-1", It.Is<Cart>(c => c.Items.Single().Quantity == 5)));
         }
 
-        [Fact]
+        [Fact, Trait("Category", "Unit")]
         public void AddItemToCart_shoppingCartItemWIthSameIdInCartDifferentName_DoNotSaveReturnBadRequest()
         {
             const string productId = "item-1";
@@ -386,7 +386,7 @@ namespace ShoppingCartServiceTests.Controllers
             fakeShoppingCartRepository.Verify(x => x.Update("cart-1", It.IsAny<Cart>()), Times.Never());
         }
 
-        [Fact]
+        [Fact, Trait("Category", "Unit")]
         public void AddItemToCart_shoppingCartItemWIthSameIdInCartDifferentPrice_DoNotSaveReturnBadRequest()
         {
             const string productId = "item-1";
@@ -409,7 +409,7 @@ namespace ShoppingCartServiceTests.Controllers
             fakeShoppingCartRepository.Verify(x => x.Update("cart-1", It.IsAny<Cart>()), Times.Never());
         }
 
-        [Fact]
+        [Fact, Trait("Category", "Unit")]
         public void RemoveItemFromCart_ShoppingCartNotFound_ReturnNotFound()
         {
             var fakeShoppingCartRepository = _mocker.GetMock<IShoppingCartRepository>();
@@ -422,7 +422,7 @@ namespace ShoppingCartServiceTests.Controllers
             Assert.IsType<NotFoundResult>(result);
         }
 
-        [Fact]
+        [Fact, Trait("Category", "Unit")]
         public void RemoveItemFromCart_ItemWithProductIdNotFoundNotFound_ReturnNotFound()
         {
             var cart = new CartBuilder().Build();
@@ -436,7 +436,7 @@ namespace ShoppingCartServiceTests.Controllers
             Assert.IsType<NotFoundResult>(result);
         }
 
-        [Fact]
+        [Fact, Trait("Category", "Unit")]
         public void RemoveItemFromCart_ItemWithProductIdFound_RemoveItemFromCart()
         {
             var cart = new CartBuilder()

@@ -26,7 +26,7 @@ namespace ShoppingCartServiceTests.DataAccess
             client.DropDatabase(_databaseSettings.DatabaseName);
         }
 
-        [Fact]
+        [Fact, Trait("Category", "Integration")]
         public void FindById_hasThreeCouponsInDB_returnReturnOnlyCouponWithCorrectId()
         {
             var target = new CouponRepository(_databaseSettings);
@@ -49,7 +49,7 @@ namespace ShoppingCartServiceTests.DataAccess
             Assert.Equal(expected, actual);
         }
 
-        [Fact]
+        [Fact, Trait("Category", "Integration")]
         public void GetById_CouponNotFound_ReturnNull()
         {
             var target = new CouponRepository(_databaseSettings);
@@ -66,7 +66,7 @@ namespace ShoppingCartServiceTests.DataAccess
             Assert.Null(actual);
         }
 
-        [Fact]
+        [Fact, Trait("Category", "Integration")]
         public void DeleteById_CouponFound_RemoveFromDb()
         {
             var target = new CouponRepository(_databaseSettings);

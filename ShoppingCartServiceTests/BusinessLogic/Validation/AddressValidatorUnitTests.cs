@@ -7,7 +7,7 @@ namespace ShoppingCartServiceTests.BusinessLogic.Validation
 {
     public class AddressValidatorUnitTests
     {
-        [Fact]
+        [Fact, Trait("Category", "Unit")]
         public void IsValid_doesNotHaveCountry_returnFalse()
         {
             var address = CreateAddress(null);
@@ -20,7 +20,7 @@ namespace ShoppingCartServiceTests.BusinessLogic.Validation
             Assert.False(result);
         }
 
-        [Fact]
+        [Fact, Trait("Category", "Unit")]
         public void IsValid_doesNotHaveCity_returnFalse()
         {
             var address = CreateAddress(city: null);
@@ -32,7 +32,7 @@ namespace ShoppingCartServiceTests.BusinessLogic.Validation
             Assert.False(result);
         }
 
-        [Fact]
+        [Fact, Trait("Category", "Unit")]
         public void IsValid_doesNotHaveStreet_returnFalse()
         {
             var address = CreateAddress(street: null);
@@ -44,7 +44,7 @@ namespace ShoppingCartServiceTests.BusinessLogic.Validation
             Assert.False(result);
         }
 
-        [Fact]
+        [Fact, Trait("Category", "Unit")]
         public void IsValid_validValues_returnTrue()
         {
             var address = CreateAddress("country-1", "city-1", "street");

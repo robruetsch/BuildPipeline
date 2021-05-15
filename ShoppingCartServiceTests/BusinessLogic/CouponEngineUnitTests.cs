@@ -10,7 +10,7 @@ namespace ShoppingCartServiceTests.BusinessLogic
 {
     public class CouponEngineUnitTests
     {
-        [Fact]
+        [Fact, Trait("Category", "Unit")]
         public void CalculateDiscount_CouponIsNull_Return0()
         {
             // We could have used auto mocking container here as well, however at the moment this initialization is simple as it is
@@ -21,7 +21,7 @@ namespace ShoppingCartServiceTests.BusinessLogic
             Assert.Equal(0, actual);
         }
 
-        [Theory]
+        [Theory, Trait("Category", "Unit")]
         [InlineData(0)]
         [InlineData(1)]
         public void CalculateDiscount_CouponHasAmountValue_ReturnNumber(double amount)
@@ -33,7 +33,7 @@ namespace ShoppingCartServiceTests.BusinessLogic
             Assert.Equal(amount, actual);
         }
 
-        [Fact]
+        [Fact, Trait("Category", "Unit")]
         public void CalculateDiscount_CouponHasValueGreaterThanShoppingCartTotal_ThrowInvalidCouponException()
         {
             var target = new CouponEngine();
@@ -42,7 +42,7 @@ namespace ShoppingCartServiceTests.BusinessLogic
                 () => target.CalculateDiscount(CreateCheckOutDto(total: 10), CreateCoupon(value: 20)));
         }
 
-        [Fact]
+        [Fact, Trait("Category", "Unit")]
         public void CalculateDiscount_CouponHasNegativeValue_ThrowInvalidCouponException()
         {
             var target = new CouponEngine();
@@ -51,7 +51,7 @@ namespace ShoppingCartServiceTests.BusinessLogic
                 () => target.CalculateDiscount(CreateCheckOutDto(total: 10), CreateCoupon(value: -10)));
         }
 
-        [Fact]
+        [Fact, Trait("Category", "Unit")]
         public void CalculateDiscount_CouponOfTypePercentage_ReturnPercentageOfTotal()
         {
             var target = new CouponEngine();
@@ -62,7 +62,7 @@ namespace ShoppingCartServiceTests.BusinessLogic
             Assert.Equal(20, actual);
         }
 
-        [Fact]
+        [Fact, Trait("Category", "Unit")]
         public void CalculateDiscount_CouponOfTypePercentageAndNegative_ThrowInvalidCouponException()
         {
             var target = new CouponEngine();
@@ -72,7 +72,7 @@ namespace ShoppingCartServiceTests.BusinessLogic
                     CreateCoupon(value: -10, couponType: CouponType.Percentage)));
         }
 
-        [Fact]
+        [Fact, Trait("Category", "Unit")]
         public void CalculateDiscount_CouponOfTypePercentageAndHigherThan100_ThrowInvalidCouponException()
         {
             var target = new CouponEngine();
@@ -82,7 +82,7 @@ namespace ShoppingCartServiceTests.BusinessLogic
                     CreateCoupon(value: 101, couponType: CouponType.Percentage)));
         }
 
-        [Fact]
+        [Fact, Trait("Category", "Unit")]
         public void CalculateDiscount_CouponOfTypePercentageAndHigherThanAmount_DoNotThrowInvalidCouponException()
         {
             var target = new CouponEngine();
@@ -93,7 +93,7 @@ namespace ShoppingCartServiceTests.BusinessLogic
             Assert.Equal(5, actual);
         }
 
-        [Fact]
+        [Fact, Trait("Category", "Unit")]
         public void CalculateDiscount_CouponOfTypeFreeShipping_ReturnShippingCost()
         {
             var target = new CouponEngine();
@@ -104,7 +104,7 @@ namespace ShoppingCartServiceTests.BusinessLogic
             Assert.Equal(10, actual);
         }
 
-        [Theory]
+        [Theory, Trait("Category", "Unit")]
         [InlineData(CouponType.Amount)]
         [InlineData(CouponType.Percentage)]
         [InlineData(CouponType.FreeShipping)]
