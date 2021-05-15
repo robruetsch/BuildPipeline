@@ -24,7 +24,7 @@ namespace ShoppingCartServiceTests.BusinessLogic
             _mocker.Use(Mapper);
         }
 
-        [Fact, Trait("Category", "Unit")]
+        [Fact, Trait("Category", "Unit"), Trait("Build", "CI")]
         public void CalculateTotals_NoShippingAddress_ThrowException()
         {
             _mocker.Use<IShippingCalculator>(new ShippingCalculator());
@@ -36,7 +36,7 @@ namespace ShoppingCartServiceTests.BusinessLogic
             Assert.Throws<MissingDataException>(() => target.CalculateTotals(cart));
         }
 
-        [Theory, Trait("Category", "Unit")]
+        [Theory, Trait("Category", "Unit"), Trait("Build", "CI")]
         [InlineData(CustomerType.Standard, 0)]
         [InlineData(CustomerType.Premium, 10)]
         public void CalculateTotals_DiscountBasedOnCustomerType(CustomerType customerType, double expectedDiscount)
@@ -59,7 +59,7 @@ namespace ShoppingCartServiceTests.BusinessLogic
         }
 
 
-        [Theory, Trait("Category", "Unit")]
+        [Theory, Trait("Category", "Unit"), Trait("Build", "CI")]
         [InlineData(ShippingMethod.Standard)]
         [InlineData(ShippingMethod.Express)]
         [InlineData(ShippingMethod.Expedited)]
@@ -86,7 +86,7 @@ namespace ShoppingCartServiceTests.BusinessLogic
             Assert.Equal(2 * 3 + result.ShippingCost, result.Total);
         }
 
-        [Fact, Trait("Category", "Unit")]
+        [Fact, Trait("Category", "Unit"), Trait("Build", "CI")]
         public void CalculateTotals_MoreThanOneItem_TotalEqualsCostPlusShipping()
         {
             var originAddress = CreateAddress(city: "city 1");
@@ -112,7 +112,7 @@ namespace ShoppingCartServiceTests.BusinessLogic
             Assert.Equal(2 * 3 + 4 * 5 + result.ShippingCost, result.Total);
         }
 
-        [Fact, Trait("Category", "Unit")]
+        [Fact, Trait("Category", "Unit"), Trait("Build", "CI")]
         public void CalculateTotals_PremiumCustomer_TotalEqualsCostPlusShippingMinusDiscount()
         {
             var originAddress = CreateAddress(city: "city 1");

@@ -29,7 +29,7 @@ namespace ShoppingCartServiceTests.DataAccess
             client.DropDatabase(_databaseSettings.DatabaseName);
         }
 
-        [Fact, Trait("Category", "Integration")]
+        [Fact, Trait("Category", "Integration"), Trait("Build", "CI")]
         public void FindAll_NoCartsInDB_ReturnEmptyList()
         {
             var target = new ShoppingCartRepository(_databaseSettings);
@@ -39,7 +39,7 @@ namespace ShoppingCartServiceTests.DataAccess
             Assert.Empty(actual);
         }
 
-        [Fact, Trait("Category", "Integration")]
+        [Fact, Trait("Category", "Integration"), Trait("Build", "CI")]
         public void FindAll_HasTwoCartsInDB_ReturnAllCarts()
         {
             var target = new ShoppingCartRepository(_databaseSettings);
@@ -56,7 +56,7 @@ namespace ShoppingCartServiceTests.DataAccess
             Assert.Equal(expected, actual);
         }
 
-        [Fact, Trait("Category", "Integration")]
+        [Fact, Trait("Category", "Integration"), Trait("Build", "CI")]
         public void GetById_hasThreeCartsInDB_returnReturnOnlyCartWithCorrectId()
         {
             var target = new ShoppingCartRepository(_databaseSettings);
@@ -75,7 +75,7 @@ namespace ShoppingCartServiceTests.DataAccess
             Assert.Equal(cart2, actual);
         }
 
-        [Fact, Trait("Category", "Integration")]
+        [Fact, Trait("Category", "Integration"), Trait("Build", "CI")]
         public void GetById_CartNotFound_ReturnNull()
         {
             var target = new ShoppingCartRepository(_databaseSettings);
@@ -95,7 +95,7 @@ namespace ShoppingCartServiceTests.DataAccess
             Assert.Null(actual);
         }
 
-        [Fact, Trait("Category", "Integration")]
+        [Fact, Trait("Category", "Integration"), Trait("Build", "CI")]
         public void Update_CartNotFound_DoNotFail()
         {
             var target = new ShoppingCartRepository(_databaseSettings);
@@ -104,7 +104,7 @@ namespace ShoppingCartServiceTests.DataAccess
             target.Update(Invalid_ID, cart1);
         }
 
-        [Fact, Trait("Category", "Integration")]
+        [Fact, Trait("Category", "Integration"), Trait("Build", "CI")]
         public void Update_CartFound_UpdateValue()
         {
             var target = new ShoppingCartRepository(_databaseSettings);
@@ -119,7 +119,7 @@ namespace ShoppingCartServiceTests.DataAccess
             Assert.Equal("other", cart1.CustomerId);
         }
 
-        [Fact, Trait("Category", "Integration")]
+        [Fact, Trait("Category", "Integration"), Trait("Build", "CI")]
         public void Remove_CartFound_RemoveFromDb()
         {
             var target = new ShoppingCartRepository(_databaseSettings);
@@ -133,7 +133,7 @@ namespace ShoppingCartServiceTests.DataAccess
             Assert.Null(result);
         }
 
-        [Fact, Trait("Category", "Integration")]
+        [Fact, Trait("Category", "Integration"), Trait("Build", "CI")]
         public void RemoveById_CartFound_RemoveFromDb()
         {
             var target = new ShoppingCartRepository(_databaseSettings);

@@ -24,7 +24,7 @@ namespace ShoppingCartServiceTests.Controllers
             _mocker.Use(Mapper);
         }
 
-        [Fact, Trait("Category", "Unit")]
+        [Fact, Trait("Category", "Unit"), Trait("Build", "CI")]
         public void CreateCoupon_ReturnCreatedAtRoute()
         {
             var fakeCouponRepository = _mocker.GetMock<ICouponRepository>();
@@ -55,7 +55,7 @@ namespace ShoppingCartServiceTests.Controllers
             Assert.Equal("coupon-1", couponId);
         }
 
-        [Fact, Trait("Category", "Unit")]
+        [Fact, Trait("Category", "Unit"), Trait("Build", "CI")]
         public void CreateCoupon_CreateCouponAtTheDatabase()
         {
             var fakeCouponRepository = _mocker.GetMock<ICouponRepository>();
@@ -84,7 +84,7 @@ namespace ShoppingCartServiceTests.Controllers
             fakeCouponRepository.Verify(x => x.Create(expected));
         }
 
-        [Fact, Trait("Category", "Unit")]
+        [Fact, Trait("Category", "Unit"), Trait("Build", "CI")]
         public void FindById_HasOneCouponWithSameId_returnAllCouponInformation()
         {
             const string couponId = "coupon-1";
@@ -105,7 +105,7 @@ namespace ShoppingCartServiceTests.Controllers
             Assert.Equal(expected, actual.Value);
         }
 
-        [Fact, Trait("Category", "Unit")]
+        [Fact, Trait("Category", "Unit"), Trait("Build", "CI")]
         public void FindById_notFound_returnNotFoundResult()
         {
             const string couponId = "coupon-1";
@@ -122,7 +122,7 @@ namespace ShoppingCartServiceTests.Controllers
             Assert.IsType<NotFoundResult>(actual.Result);
         }
 
-        [Fact, Trait("Category", "Unit")]
+        [Fact, Trait("Category", "Unit"), Trait("Build", "CI")]
         public void Delete_ReturnNoContentResultAndDeleteItem()
         {
             var fakeCouponRepository = _mocker.GetMock<ICouponRepository>();

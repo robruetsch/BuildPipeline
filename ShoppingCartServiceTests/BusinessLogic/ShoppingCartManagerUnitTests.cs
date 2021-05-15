@@ -23,7 +23,7 @@ namespace ShoppingCartServiceTests.BusinessLogic
             _mocker.Use(Mapper);
         }
 
-        [Fact, Trait("Category", "Unit")]
+        [Fact, Trait("Category", "Unit"), Trait("Build", "CI")]
         public void CalculateTotals_CombineTheCouponDataWithShoppingCart()
         {
             var fakeCouponRepository = _mocker.GetMock<ICouponRepository>();
@@ -49,7 +49,7 @@ namespace ShoppingCartServiceTests.BusinessLogic
             Assert.Equal(100, result.CouponDiscount);
         }
 
-        [Fact, Trait("Category", "Unit")]
+        [Fact, Trait("Category", "Unit"), Trait("Build", "CI")]
         public void CalculateTotals_SubtractCouponCodeFromTotal()
         {
             var fakeCouponRepository = _mocker.GetMock<ICouponRepository>();
