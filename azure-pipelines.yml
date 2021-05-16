@@ -31,4 +31,4 @@ stages:
     - task: PublishCodeCoverageResults@1
       inputs:
         codeCoverageTool: 'Cobertura'
-        summaryFileLocation: '$(build.artifactstagingdirectory)/TestResults/coverage.cobertura.xml'
+        summaryFileLocation: '$(Agent.TempDirectory)/TestResults/coverage.cobertura.xml'
