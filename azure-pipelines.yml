@@ -27,8 +27,8 @@ stages:
       inputs:
         command: 'test'
         projects: '**/*Tests/*.csproj'
-        arguments: '--configuration $(buildConfiguration) --filter Build=CI --collect:"XPlat Code Coverage"'
+        arguments: '--configuration $(buildConfiguration) --filter Build=CI --collect:"XPlat Code Coverage" /p:CoverletOutput=$(Build.SourcesDirectory)/TestResults/Coverage/'
     - task: PublishCodeCoverageResults@1
       inputs:
         codeCoverageTool: 'Cobertura'
-        summaryFileLocation: '$(System.DefaultWorkingDirectory)/coverage.cobertura.xml'
+        summaryFileLocation: '$(Build.SourcesDirectory)/TestResults/Coverage/coverage.cobertura.xml'
