@@ -28,3 +28,6 @@ stages:
         command: 'test'
         projects: '**/*Tests/*.csproj'
         arguments: '--configuration $(buildConfiguration) --filter Build=CI --collect:"XPlat Code Coverage"'
+    - task: PublishCodeCoverageResults@1
+      inputs:
+        summaryFileLocation: $(System.DefaultWorkingDirectory)/coverage.cobertura.xml
